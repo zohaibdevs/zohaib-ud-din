@@ -15,9 +15,21 @@
         "padding_top": 28,
         "padding_bottom": 28
       }
+    },
+    "section_banner_cKVegB": {
+      "type": "section-banner",
+      "name": "Banner",
+      "settings": {}
+    },
+    "section_custom_grid_rDGnnM": {
+      "type": "section-custom-grid",
+      "name": "Custom Grid",
+      "settings": {}
     }
   },
   "order": [
-    "main"
+    "main",
+    "section_banner_cKVegB",
+    "section_custom_grid_rDGnnM"
   ]
 }
