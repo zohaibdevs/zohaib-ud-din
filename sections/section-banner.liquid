@@ -1,19 +1,526 @@
+{% style %}
+:root{
+    --bg: #F5F5F5;
+    --btn_primary-bg: #FFF544;
+    --btn_primary-color: #000000;
+    --btn_primary-hover-bg: #000000;
+}
+a{
+    color:inherit;
+}
+.header-{{ section.id }}-section{
+    background: var(--bg);
+    position:relative;
+}
+
+.header-{{ section.id }}-section .section-block{
+   display:flex;
+   align-items:center;
+}
+
+.header-{{ section.id }}-section .section-block .section-block-icon{
+    width:max-content;
+    display:none;
+   
+}
+.header-{{ section.id }}-section .section-block .section-block-icon .btn__menu{
+  display:flex;
+  flex-direction:column;
+  gap: 3px;
+  border:0px;
+  padding:0px;
+  margin:0px;
+  cursor:pointer;
+  position:relative;
+  height:15px;
+  width: 18px;
+}
+.header-{{ section.id }}-section .section-block .section-block-icon span{
+    display:block;
+    width: 30px;
+    height:3px;
+    position:absolute;
+    background-color: #000000;
+    border-radius: 10px;
+  transition: all .2s linear;
+}
+
+.header-{{ section.id }}-section .section-block .section-block-icon span:nth-child(2){
+    top:50%;
+}
+
+.header-{{ section.id }}-section .section-block .section-block-icon span:nth-child(3){
+    top:100%;
+}
+
+.header-{{ section.id }}-section .section-block .section-block-icon .btn__menu__open span:nth-child(3){
+    opacity: 0;
+    visibility: hidden;
+}
+
+.header-{{ section.id }}-section .section-block .section-block-icon .btn__menu__open span:nth-child(1){
+    top:50%;
+    transform: rotate(45deg);
+}
+
+.header-{{ section.id }}-section .section-block .section-block-icon .btn__menu__open span:nth-child(2){
+    transform: rotate(-45deg);
+}
 
 
 
+.header-{{ section.id }}-section .section-block .section-block-content{
+    display:flex;
+    width:100%;
+    align-items:center;
+    justify-content:space-between;
+}
 
+.header-{{ section.id }}-section .section-block h1{
+    font-weight:600;
+    text-transform:uppercase;
+    margin-top:10px;
+    margin-bottom:10px;
+}
+
+.header-{{ section.id }}-section .section-block p{
+    font-weight:400;
+    font-family:'jost', sans-serif;
+    font-size:16px;
+    line-height:13.42px;
+}
+.header-{{ section.id }}-mobile{
+    position: absolute;
+    top:100%;
+    left:0;
+    width: 100%;
+    background:#ffffff;
+    z-index:1;
+    height:0px;
+    visibility:hidden;
+    opacity:0;
+    transition: height .4s linear;
+}
+.header-{{ section.id }}-mobile .section-block_content{
+    display:flex;
+    align-items:center;
+    flex-direction:column;
+    justify-content:space-between;
+    padding:20px;
+}
+
+.header-{{ section.id }}-mobile.open{
+    height:160px;
+    visibility:visible;
+    opacity:1;
+    transition: height .4s linear;
+}
+
+@media(max-width:768px){
+    .header-{{ section.id }}-section .section-block .section-block-content .section-left{
+        width: 100%;
+        text-align:center;
+    }
+     .header-{{ section.id }}-section .section-block .section-block-content .section-center,
+     .header-{{ section.id }}-section .section-block .section-block-content .section-right{
+        display:none;
+     }
+    .header-{{ section.id }}-section .section-block .section-block-icon{
+        display:block;
+    }
+ 
+}
+
+.btn__primary{
+    position:relative;
+    width:207px;
+    height:55px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-weight:400;
+    font-family:'jost', sans-serif;
+    gap: 10px;
+    line-height:20.48px;
+    text-transform:uppercase;
+    text-decoration: none;
+    font-size:16px;
+    color: var(--btn_primary-color);
+    background-color: var(--btn_primary-bg);
+    
+}
+.btn__primary .btn__primary-text{
+    color: var(--btn_primary-color);
+    z-index:1;
+    position:relative;
+}
+.btn__primary .btn__primary-icon{
+    line-height:1;
+}
+.btn__primary .btn__primary-icon svg{
+  width:30px;
+  height:30px;
+}
+.btn__primary:hover {
+--btn_primary-color: #ffffff;
+color: var(--btn_primary-color);
+}
+.btn__primary:hover .btn__primary-text,
+.btn__primary:hover .btn__primary-icon svg,
+.btn__primary:hover .btn__primary-icon svg path{
+    --btn_primary-color: #ffffff;
+    color: inherit;
+    fill: currentColor;
+    z-index:1;
+    position:relative;
+}
+.btn__primary:before{
+    content:"";
+    position:absolute;
+    width:0;
+    height:55px;
+    background-color: var(--btn_primary-hover-bg);
+    top:0;
+    left:0;
+    display: block!important;
+    transition: width .2s linear;
+}
+
+.btn__primary:hover:before{
+    width:100%;
+}
+
+.banner-{{ section.id }}-section{
+    position:relative;
+    width: 100%;
+    height: 100vh;
+    overflow:hidden;
+}
+.banner-{{ section.id }}-section .image-placeholder{
+    postion:relative;
+}
+.banner-{{ section.id }}-section .image-placeholder img{
+    width:100%;
+    height: auto;
+}
+.banner-{{ section.id }}-section .image-placeholder .button_block{
+    display:none;
+    position:absolute;
+    bottom:30px;
+    left:50%;
+    transform: translateX(-50%);
+}
+
+.section-text-block{
+    position:absolute;
+    bottom:15px;
+    left: 100px;
+    background-color:#ffffff;
+    padding:15px 40px;
+    max-width: 600px;
+}
+
+
+.section-text-block h2{
+    font-weight:600;
+    font-family:'jost', sans-serif;
+    font-size:60px;
+}
+
+.section-text-block p{
+    font-family:'jost', sans-serif;
+    font-size:16px;
+}
+.section-text-block p:nth-child(3){
+    display:none;
+}
+
+.section-text-block .btn__primary,
+.banner-{{ section.id }}-section .image-placeholder .button_block a{
+   --btn_primary-color: #ffffff;
+   background-color: var(--btn_primary-hover-bg);
+   color: var(--btn_primary-color);
+}
+.section-text-block .btn__primary:hover,
+.banner-{{ section.id }}-section .image-placeholder .button_block a:hover{
+     --btn_primary-color: #000000;
+     color: var(--btn_primary-color);
+}
+.section-text-block .btn__primary:hover:before,
+.banner-{{ section.id }}-section .image-placeholder .button_block a:hover:before{
+  --btn_primary-bg: #FFF544;
+   background-color: var(--btn_primary-bg);
+}
+
+@media(max-width:768px){
+    .banner-{{ section.id }}-section .image-placeholder .button_block{
+        display:block;
+    }
+     .banner-{{ section.id }}-section{
+        height:auto;
+     }
+    .banner-{{ section.id }}-section .section-bg{
+        display:flex;
+        flex-direction:column-reverse;
+
+    }
+    .section-text-block p:nth-child(2){
+    display:none;
+}
+   .section-text-block p:nth-child(3){
+    display:block;
+}
+    .section-text-block{
+        max-width:100%;
+        position:static;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        flex-direction:column;
+    }
+     .section-text-block h2{
+        font-size:30px;
+        font-weight:500px;
+        margin:.5rem;
+     }
+     .section-text-block p{
+        font-size:14px;
+        text-align:center;
+     }
+
+     .section-text-block a{
+        display:none;
+     }
+}
+.section-{{ section.id }}-bottom-bar{
+background-color:var(--bg);
+padding:15px;
+text-align:center;
+}
+.section-{{ section.id }}-bottom-bar p{
+    margin:0px;
+    font-family:'jost', sans-serif;
+    font-size:16px;
+    font-weight:500;
+}
+{% endstyle %}
+
+<div class="header-{{ section.id }}-section">
+    <div class="page-width">
+      <div class="section-block">
+        <div class="section-block-icon">
+            <button aria-label="Menu" class="btn__menu">
+               <span></span>
+               <span></span>
+               <span></span>
+            </button>
+        </div>
+        <div class="section-block-content">
+            <div class="section-left">
+            <h1>{{ section.settings.heading | escape }}</h1>
+        </div>  
+        <div class="section-center">
+            <p>{{ section.settings.header_txt | escape }}</p>
+        </div>  
+        <div class="section-right">
+            <a href="{{ section.settings.btn_link }}" class="btn__primary">
+                <span class="btn__primary-text"> 
+                    {{ section.settings.btn_text | escape }}
+                </span>
+                <span class="btn__primary-icon"> 
+                    {{- 'icon_btn.svg' | inline_asset_content -}}
+                </span>
+            </a>
+        </div>
+        </div>
+      </div>  
+    </div>
+    <div class="header-{{ section.id }}-mobile" aria-hidden="true" aria-label="Mobile Menu">
+        <div class="page-width">
+          <div class="section-block_content">
+            <p>{{ section.settings.header_txt | escape }}</p>
+            <a href="{{ section.settings.btn_link }}" class="btn__primary">
+                    <span class="btn__primary-text"> 
+                        {{ section.settings.btn_text | escape }}
+                    </span>
+                    <span class="btn__primary-icon"> 
+                        {{- 'icon_btn.svg' | inline_asset_content -}}
+                    </span>
+            </a>
+          </div>
+        </div>
+      </div>
+</div>
+<div class="banner-{{ section.id }}-section">
+      <div class="section-bg">
+        {% if section.settings.bg != blank %}
+            {{ section.settings.bg  |  image_url: width:section.settings.bg .width  | image_tag    }}
+        {% else %}
+            <div class="image-placeholder">
+               <img src=" {{- 'image-placeholder.svg' | asset_url -}}" alt="Image Placeholder">
+               <div class="button_block">
+                <a href="{{ section.settings.block_button_link }}" class="btn__primary">
+                <div class="btn__primary-text">{{ section.settings.block_button_text | escape }}</div>    
+                <div class="btn__primary-icon">{{- 'icon_btn.svg' | inline_asset_content -}}</div>    
+                </a>
+               </div>
+            </div>
+        {% endif %}
+              
+        <div class="section-text-block">
+            <h2>{{ section.settings.block_heading | escape }}</h2>
+            <p>{{ section.settings.block_text | escape }}</p>
+              <p>{{ section.settings.block_text |  split: '.' | first |  append: '.' | escape }}</p>
+            <a href="{{ section.settings.block_button_link }}" class="btn__primary">
+               <div class="btn__primary-text">{{ section.settings.block_button_text | escape }}</div>    
+               <div class="btn__primary-icon">{{- 'icon_btn.svg' | inline_asset_content -}}</div>    
+            </a>
+        </div>
+    </div>
+    
+</div>
+<div class="section-{{ section.id }}-bottom-bar">
+  <div class="pag-width">
+    <p>{{ section.settings.bottom_bar_text | escape }}</p>
+  </div>
+</div>
+
+<script>
+    const menu_btn = document.querySelector('.btn__menu');
+    const mobile_menu = document.querySelector('.header-{{ section.id }}-mobile');
+    menu_btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        menu_btn.classList.toggle('btn__menu__open');
+        mobile_menu.classList.toggle('open');
+    });
+</script>
 {% schema %}
 {
-    "name": "Banner",
-    "settings": [
-        
-        ],
+    "name":"Banner",
+    "settings":[
+        {
+            "type": "header",
+            "content": "Header",
+        },
+        {
+            "type": "text",
+            "id": "heading",
+            "label": "Heading",
+            "default": "Tisso Vison"
+        },
+        {
+            "type": "text",
+            "id": "header_txt",
+            "label": "Header Text",
+            "default": "Find the ideal gift for your loved ones."
+        },
+        {
+            "type": "text",
+            "id": "btn_text",
+            "label": "Button Text",
+            "default": "Choose Gift"
+        },
+        {
+            "type": "url",
+            "id": "btn_link",
+            "label": "Button Link"
+        },
+        {
+            "type": "header",
+            "content": "Banner Background",
+        },
+        {
+            "type": "image_picker",
+            "id":"bg",
+            "label": "Background Image"
+        },
+        {
+            "type": "header",
+            "content": "Text Block",
+        },
+        {
+            "type": "select",
+            "id": "block_alignment",
+            "label": "Block Alignment",
+            "options": [
+                {
+                    "label":"Top Left",
+                    "value": "top-left"
+                },
+                {
+                    "label":"Top Right",
+                    "value": "top-right"
+                },
+                {
+                    "label":"Top Center",
+                    "value": "top-center"
+                },
+                {
+                    "label":"Middle Left",
+                    "value": "middle-left"
+                },
+                {
+                    "label":"Middle Center",
+                    "value": "middle-center"
+                },
+                {
+                    "label":"Middle Right",
+                    "value": "middle-right"
+                },
+                {
+                    "label":"Bottom Left",
+                    "value": "bottom-left"
+                },
+                {
+                    "label":"Bottom Right",
+                    "value": "bottom-right"
+                },
+                {
+                    "label":"Bottom Center",
+                    "value": "bottom-center"
+                }
+            ],
+            "default": "bottom-left"
+        },
+        {
+            "type": "inline_richtext",
+            "id":"block_heading",
+            "label": "Heading",
+            "default": "The Gift Guide"
+        },
+        {
+            "type": "textarea",
+            "id":"block_text",
+            "label": "Paragraph",
+            "default": "Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season."
+        },
+        {
+            "type": "text",
+            "id": "block_button_text",
+            "label": "Button Text",
+            "default": "Shop Now"
+        },
+        {
+            "type": "url",
+            "id": "block_button_link",
+            "label": "Button Link"
+        },
+        {
+            "type": "header",
+            "content": "Bottom Bar",
+        },
+        {
+            "type": "text",
+            "id":"bottom_bar_text",
+            "label": "Bottom Bar Text",
+            "default": "SUSTAINABLE, ETHICALLY MADE CLOTHES IN SIZES XXS TO 6XL"
+        }
+    ],
     "presets":[
         {
             "name":"Banner",
-            "category":"page"
+             "category":"page"
         }
     ]
-        
 }
 {% endschema %}

@@ -1,0 +1,850 @@
+{% style %}
+  /* ===== Lookbook Grid ===== */
+  .lookbook-{{ section.id }} {
+    background-color: #ffffff;
+    padding: 60px 0 60px;
+  }
+
+  .lookbook-{{ section.id }}
+  .lookbook-heading {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .lookbook-{{ section.id }}
+  .lookbook-heading h2 {
+    font-family: 'Lustria'
+    , serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 36px;
+    line-height: 120%;
+    letter-spacing: 0;
+    margin: 0;
+    color: #000000;
+  }
+
+  .lookbook-{{ section.id }}
+  .lookbook-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    max-width: 100%;
+  }
+
+  .lookbook-{{ section.id }}
+  .lookbook-item {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    max-width: 433px;
+    height: auto;
+    min-height: 444px;
+  }
+
+  .lookbook-{{ section.id }}
+  .lookbook-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .lookbook-{{ section.id }}.lookbook-item:hover img {
+    transform: scale(1.05);
+  }
+
+  .lookbook-{{ section.id }}
+  .lookbook-item .lookbook-placeholder {
+    width: 100%;
+    height: 100%;
+    background-color: #333333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .lookbook-{{ section.id }}
+  .lookbook-item .lookbook-placeholder svg {
+    width: 48px;
+    height: 48px;
+    fill: #555555;
+  }
+
+  .lookbook-{{ section.id }}
+  .lookbook-item .lookbook-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    text-decoration: none;
+    z-index: 2;
+    transition: transform 0.2s ease;
+    background: transparent;
+    border: 0;
+    padding: 0;
+  }
+
+  .lookbook-{{ section.id }}.lookbook-item .lookbook-btn:hover {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+
+  .lookbook-{{ section.id }}
+  .lookbook-item .lookbook-btn svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  @media(max-width: 768px) {
+    .lookbook-{{ section.id }} .lookbook-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 4px;
+    }
+    .lookbook-{{ section.id }}
+    .lookbook-item {
+      min-height: 307px;
+    }
+  }
+
+  @media(max-width: 480px) {
+    .lookbook-{{ section.id }} .lookbook-grid {
+      grid-template-columns: 1fr;
+      gap: 4px;
+    }
+  }
+
+  /* ===== Product Popup ===== */
+  .lookbook-popup-{{ section.id }} {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    transition: background-color 0.3s ease;
+  }
+
+  .lookbook-popup-{{ section.id }}.active {
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .lookbook-popup-{{ section.id }}
+  .popup-content {
+    background-color: #ffffff;
+    max-width: 411px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    transform: scale(0);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  .lookbook-popup-{{ section.id }}.active
+  .popup-content {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  .lookbook-popup-{{ section.id }}
+  .popup-close {
+    position: absolute;
+    top: 5px;
+    right:5px;
+    width: 32px;
+    height: 32px;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    z-index: 10;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .lookbook-popup-{{ section.id }}
+  .popup-close svg {
+    width: 24px;
+    height: 24px;
+    stroke: #000000;
+    stroke-width: 2;
+  }
+
+  .lookbook-popup-{{ section.id }}
+  .popup-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .lookbook-popup-{{ section.id }}
+  .popup-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+    margin-bottom:30px;
+  }
+
+  .lookbook-popup-{{ section.id }}
+  .popup-image {
+    flex: 0 0 auto;
+    width: 120px;
+    height: 180px;
+  }
+
+  .lookbook-popup-{{ section.id }}
+  .popup-image img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    background-color: #f8f8f8;
+  }
+
+  .lookbook-popup-{{ section.id }}
+  .popup-header-info {
+    flex: 1;
+  }
+
+  .lookbook-popup-{{ section.id }}
+  .popup-header-info h3 {
+    font-family: 'Jost'
+    , sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 25px;
+    line-height: 130%;
+    margin: 0 0 16px;
+    color: #000000;
+  }
+
+  .lookbook-popup-{{ section.id }}
+  .popup-header-info .popup-price {
+    font-family: 'Lustria'
+    , serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 120%;
+    margin: 0 0 10px;
+    color: #000000;
+  }
+
+  .lookbook-popup-{{ section.id }}
+  .popup-header-info .popup-description {
+    font-family: 'Jost'
+    , sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 14px;
+    line-height: 110%;
+    letter-spacing: -0.14px;
+    margin: 0;
+    color: #000000;
+  }
+
+  .lookbook-popup-{{ section.id }}
+  .popup-details {
+    padding: 30px 25px;
+  }
+
+  .lookbook-popup-{{ section.id }}
+  .popup-details .popup-variants {
+    margin-bottom: 40px;
+  }
+
+  .lookbook-popup-{{ section.id }}
+  .popup-details .popup-variant-label {
+    font-family: 'Jost'
+    , sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14px;
+    line-height: 130%;
+    letter-spacing: 0;
+    margin: 0 0 10px;
+    color: #333333;
+    display: block;
+  }
+
+  .lookbook-popup-{{ section.id }}
+  .popup-details .popup-variant-options {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+
+  .lookbook-popup-{{ section.id }}
+  .popup-details .popup-variant-btn {
+    padding: 0 24px 0 30px;
+    height: 40.44px;
+    border: 1px solid #000000;
+    background-color: #ffffff;
+    font-family: 'Jost'
+    , sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 100%;
+    letter-spacing: -0.36px;
+    text-transform: capitalize;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #000000;
+    flex: 1;
+    min-width: 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .lookbook-popup-{{ section.id }}
+  .popup-details .popup-variant-btn::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 6px;
+    background-color: var(--swatch-color, #000000);
+  }
+
+  .lookbook-popup-{{ section.id }}
+  .popup-details .popup-variant-btn.active {
+    background-color: #000000;
+    color: #ffffff;
+  }
+
+  .lookbook-popup-{{ section.id }}
+  .popup-details .popup-variant-select {
+    width: 100%;
+    height: 40.44px;
+    padding: 0 60px 0 16px;
+    border: 1px solid #000000;
+    background-color: #ffffff;
+    font-family: 'Jost'
+    , sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 100%;
+    letter-spacing: -0.36px;
+    text-transform: capitalize;
+    cursor: pointer;
+    appearance: none;
+    background-image: linear-gradient(to right, #000000 1px, transparent 1px)
+    , url("data:image/svg+xml, %3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' d='M4 6l4 4 4-4'/%3E%3C/svg%3E");
+    background-repeat: no-repeat
+    , no-repeat;
+    background-position: right 50px center
+    , right 16px center;
+    background-size: 1px 60%
+    , 16px 16px;
+  }
+
+  .lookbook-popup-{{ section.id }}
+  .popup-details .popup-variant-select:focus {
+    background-image: linear-gradient(to right, #000000 1px, transparent 1px)
+    , url("data:image/svg+xml, %3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' d='M4 10l4 -4 4 4'/%3E%3C/svg%3E");
+  }
+
+  .popup-details .popup-variant-select  option {
+     text-align:center;
+  }
+  .lookbook-popup-{{ section.id }}
+  .popup-details .popup-add-to-cart {
+    position: relative;
+    width: 100%;
+    height: 55px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 400;
+    font-family: 'jost'
+    , sans-serif;
+    gap: 10px;
+    line-height: 20.48px;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: 16px;
+    background-color: #000000;
+    color: #ffffff;
+    border: 0;
+    cursor: pointer;
+    overflow: hidden;
+  }
+
+  .lookbook-popup-{{ section.id }}
+  .popup-details .popup-add-to-cart span {
+    color: #ffffff;
+    z-index: 1;
+    position: relative;
+  }
+
+  .lookbook-popup-{{ section.id }}
+  .popup-details .popup-add-to-cart svg {
+    width: 30px;
+    height: 30px;
+  }
+
+  .lookbook-popup-{{ section.id }}
+  .popup-details .popup-add-to-cart:hover span,
+  .lookbook-popup-{{ section.id }}
+  .popup-details .popup-add-to-cart:hover svg,
+  .lookbook-popup-{{ section.id }}
+  .popup-details .popup-add-to-cart:hover svg path {
+    color: #000000;
+    fill: currentColor;
+    z-index: 1;
+    position: relative;
+  }
+
+  .lookbook-popup-{{ section.id }}
+  .popup-details .popup-add-to-cart:before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 55px;
+    background-color: #FFF544;
+    top: 0;
+    left: 0;
+    display: block !important;
+    transition: width 0.2s linear;
+  }
+
+  .lookbook-popup-{{ section.id }}
+  .popup-details .popup-add-to-cart:hover:before {
+    width: 100%;
+  }
+
+  @media(max-width: 768px) {
+    
+   
+    .lookbook-popup-{{ section.id }}
+    .popup-header-info {
+      padding: 24px;
+    }
+    .lookbook-popup-{{ section.id }}
+    .popup-details {
+      padding: 0 24px 24px;
+    }
+  }
+
+{% endstyle %}
+
+<div class="lookbook-{{ section.id }}">
+  <div class="page-width">
+    <div class="lookbook-heading">
+      <h2>{{ section.settings.heading | default: 'Tisso vison in the wild' }}</h2>
+    </div>
+    <div class="lookbook-grid">
+      {% for block in section.blocks %}
+        <div class="lookbook-item" {{ block.shopify_attributes }}>
+          {% if block.settings.product != blank %}
+            {% assign product = block.settings.product %}
+            {{ product.featured_image | image_url: width: 800 | image_tag: loading: 'lazy', alt: product.title }}
+          {% else %}
+            <div class="lookbook-placeholder">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" /></svg>
+            </div>
+          {% endif %}
+          {% assign icon_x = block.settings.icon_position_x | default: 50 %}
+          {% assign icon_y = block.settings.icon_position_y | default: 50 %}
+          {% if block.settings.product != blank %}
+            <button
+              type="button"
+              class="lookbook-btn"
+              style="left:{{ icon_x }}%; top:{{ icon_y }}%;"
+              data-product-handle="{{ block.settings.product.handle }}"
+              aria-label="Quick view {{ block.settings.product.title }}">
+              {{- 'icon-plus-circle.svg' | inline_asset_content -}}
+            </button>
+          {% else %}
+            <button
+              type="button"
+              class="lookbook-btn"
+              style="left:{{ icon_x }}%; top:{{ icon_y }}%;"
+              aria-label="View product">
+              {{- 'icon-plus-circle.svg' | inline_asset_content -}}
+            </button>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- Product Popup -->
+  <div class="lookbook-popup-{{ section.id }}" id="lookbook-popup-{{ section.id }}">
+    <div class="popup-content">
+      <button
+        type="button"
+        class="popup-close"
+        aria-label="Close">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none">
+          <path
+            d="M18 6L6 18M6 6l12 12"
+            stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
+      </button>
+      <div class="popup-inner">
+
+        <div class="popup-details">
+          <div class="popup-header">
+            <div class="popup-image">
+              <img
+                src=""
+                alt=""
+                id="popup-product-image-{{ section.id }}">
+            </div>
+            <div class="popup-header-info">
+              <h3 id="popup-product-title-{{ section.id }}"></h3>
+              <div class="popup-price" id="popup-product-price-{{ section.id }}"></div>
+              <div class="popup-description" id="popup-product-description-{{ section.id }}"></div>
+            </div>
+          </div>
+          <div class="popup-variants" id="popup-product-variants-{{ section.id }}"></div>
+          <button
+            type="button"
+            class="popup-add-to-cart"
+            id="popup-add-to-cart-{{ section.id }}">
+            <span>Add to cart</span>
+            {{- 'icon_btn.svg' | inline_asset_content -}}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function(){
+    const popup = document.getElementById('lookbook-popup-{{ section.id }}');
+    const popupClose = popup.querySelector('.popup-close');
+    const lookbookBtns = document.querySelectorAll('.lookbook-{{ section.id }} .lookbook-btn');
+    
+    console.log('Lookbook popup initialized');
+    console.log('Found buttons:', lookbookBtns.length);
+    
+    if(!popup){
+        console.error('Popup element not found');
+        return;
+    }
+    
+    let currentProduct = null;
+    let selectedVariantId = null;
+    
+    // Open popup
+    lookbookBtns.forEach(btn => {
+        btn.addEventListener('click', async function(e){
+            e.preventDefault();
+            e.stopPropagation();
+            console.log('Button clicked');
+            const handle = this.getAttribute('data-product-handle');
+            console.log('Product handle:', handle);
+            if(!handle) return;
+            
+            try{
+                const response = await fetch(`/products/${handle}.js`);
+                const product = await response.json();
+                currentProduct = product;
+                selectedVariantId = product.variants[0].id;
+                renderPopup(product);
+                popup.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                document.body.style.paddingRight = (window.innerWidth - document.documentElement.clientWidth) + 'px';
+                console.log('Popup opened');
+            }catch(err){
+                console.error('Error loading product:', err);
+            }
+        });
+    });
+    
+    // Close popup
+    function closePopup(){
+        popup.classList.remove('active');
+        document.body.style.overflow = '';
+        document.body.style.paddingRight = '';
+        console.log('Popup closed');
+    }
+    
+    popupClose.addEventListener('click', closePopup);
+    
+    popup.addEventListener('click', function(e){
+        if(e.target === popup){
+            closePopup();
+            console.log('Popup closed by clicking overlay');
+        }
+    });
+    
+    // Render popup content
+    function renderPopup(product){
+        // Image
+        const imgEl = document.getElementById('popup-product-image-{{ section.id }}');
+        imgEl.src = product.featured_image || '';
+        imgEl.alt = product.title;
+        
+        // Title
+        document.getElementById('popup-product-title-{{ section.id }}').textContent = product.title;
+        
+        // Price
+        const priceEl = document.getElementById('popup-product-price-{{ section.id }}');
+        const price = (product.price / 100).toFixed(2);
+        priceEl.textContent = `${price}€`;
+        
+        // Description
+        const descEl = document.getElementById('popup-product-description-{{ section.id }}');
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = product.description;
+        descEl.textContent = tempDiv.textContent.substring(0, 200) + (tempDiv.textContent.length > 200 ? '...' : '');
+        
+        // Variants
+        renderVariants(product);
+    }
+    
+    function renderVariants(product){
+        const variantsContainer = document.getElementById('popup-product-variants-{{ section.id }}');
+        variantsContainer.innerHTML = '';
+        
+        if(product.variants.length === 1){
+            return;
+        }
+        
+        // Separate color and non-color options
+        const colorOptions = [];
+        const otherOptions = [];
+        
+        product.options.forEach((option, optionIndex) => {
+            const optionName = option.name || option;
+            if(optionName.toLowerCase() === 'color' || optionName.toLowerCase() === 'colour'){
+                colorOptions.push({option, optionIndex});
+            }else{
+                otherOptions.push({option, optionIndex});
+            }
+        });
+        
+        // Render color options first, then other options
+        [...colorOptions, ...otherOptions].forEach(({option, optionIndex}) => {
+            const optionName = option.name || option;
+            const optionValues = [...new Set(product.variants.map(v => v.options[optionIndex]))];
+            
+            const optionDiv = document.createElement('div');
+            optionDiv.style.marginBottom = '20px';
+            
+            const label = document.createElement('label');
+            label.className = 'popup-variant-label';
+            label.textContent = optionName;
+            optionDiv.appendChild(label);
+            
+            if(optionName.toLowerCase() === 'color' || optionName.toLowerCase() === 'colour'){
+                // Color swatches
+                const swatchDiv = document.createElement('div');
+                swatchDiv.className = 'popup-variant-options';
+                optionValues.forEach(value => {
+                    const btn = document.createElement('button');
+                    btn.type = 'button';
+                    btn.className = 'popup-variant-btn';
+                    btn.textContent = value;
+                    
+                    // Set color based on color name
+                    const colorValue = value.toLowerCase();
+                    let swatchColor = '#000000';
+                    if(colorValue === 'white') swatchColor = '#ffffff';
+                    else if(colorValue === 'black') swatchColor = '#000000';
+                    else if(colorValue === 'red') swatchColor = '#ff0000';
+                    else if(colorValue === 'blue') swatchColor = '#0000ff';
+                    else if(colorValue === 'green') swatchColor = '#00ff00';
+                    else if(colorValue === 'yellow') swatchColor = '#ffff00';
+                    else if(colorValue === 'pink') swatchColor = '#ffc0cb';
+                    else if(colorValue === 'purple') swatchColor = '#800080';
+                    else if(colorValue === 'orange') swatchColor = '#ffa500';
+                    else if(colorValue === 'brown') swatchColor = '#a52a2a';
+                    else if(colorValue === 'gray' || colorValue === 'grey') swatchColor = '#808080';
+                    else swatchColor = colorValue;
+                    
+                    // Apply color to ::before pseudo-element via CSS variable
+                    btn.style.setProperty('--swatch-color', swatchColor);
+                    
+                    if(product.variants[0].options[optionIndex] === value){
+                        btn.classList.add('active');
+                    }
+                    btn.addEventListener('click', function(){
+                        swatchDiv.querySelectorAll('.popup-variant-btn').forEach(b => b.classList.remove('active'));
+                        this.classList.add('active');
+                        updateSelectedVariant();
+                    });
+                    swatchDiv.appendChild(btn);
+                });
+                optionDiv.appendChild(swatchDiv);
+            }else{
+                // Dropdown
+                const select = document.createElement('select');
+                select.className = 'popup-variant-select';
+                
+                // Add placeholder option
+                const placeholderOpt = document.createElement('option');
+                placeholderOpt.value = '';
+                placeholderOpt.textContent = 'Choose your size';
+                placeholderOpt.disabled = true;
+                placeholderOpt.selected = true;
+                placeholderOpt.hidden = true;
+                select.appendChild(placeholderOpt);
+                
+                optionValues.forEach(value => {
+                    const opt = document.createElement('option');
+                    opt.value = value;
+                    opt.textContent = value;
+                    select.appendChild(opt);
+                });
+                select.addEventListener('change', updateSelectedVariant);
+                optionDiv.appendChild(select);
+            }
+            
+            variantsContainer.appendChild(optionDiv);
+        });
+    }
+    
+    function updateSelectedVariant(){
+        if(!currentProduct) return;
+        
+        const selectedOptions = [];
+        const variantsContainer = document.getElementById('popup-product-variants-{{ section.id }}');
+        
+        // Get selected values
+        variantsContainer.querySelectorAll('.popup-variant-btn.active').forEach(btn => {
+            selectedOptions.push(btn.textContent);
+        });
+        variantsContainer.querySelectorAll('.popup-variant-select').forEach(select => {
+            selectedOptions.push(select.value);
+        });
+        
+        // Find matching variant
+        const variant = currentProduct.variants.find(v => {
+            return v.options.every((opt, i) => opt === selectedOptions[i]);
+        });
+        
+        if(variant){
+            selectedVariantId = variant.id;
+        }
+    }
+    
+    // Add to cart
+    document.getElementById('popup-add-to-cart-{{ section.id }}').addEventListener('click', async function(){
+        if(!selectedVariantId) return;
+        
+        try{
+            const response = await fetch('/cart/add.js', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    id: selectedVariantId,
+                    quantity: 1
+                })
+            });
+            
+            if(response.ok){
+                // Trigger cart update event
+                window.dispatchEvent(new Event('cart:updated'));
+                closePopup();
+                // Optional: show success message
+                alert('Product added to cart!');
+            }
+        }catch(err){
+            console.error('Error adding to cart:', err);
+        }
+    });
+  });
+</script>
+
+{% schema %}
+  {
+    "name": "Lookbook Grid",
+    "settings": [
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading",
+        "default": "Tisso vison in the wild"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "lookbook_item",
+        "name": "Lookbook Item",
+        "settings": [
+          {
+            "type": "product",
+            "id": "product",
+            "label": "Product"
+          }, {
+            "type": "range",
+            "id": "icon_position_x",
+            "label": "Icon Position X (%)",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "default": 50,
+            "unit": "%"
+          }, {
+            "type": "range",
+            "id": "icon_position_y",
+            "label": "Icon Position Y (%)",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "default": 50,
+            "unit": "%"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Lookbook Grid",
+        "category": "page",
+        "blocks": [
+          {
+            "type": "lookbook_item"
+          },
+          {
+            "type": "lookbook_item"
+          },
+          {
+            "type": "lookbook_item"
+          },
+          {
+            "type": "lookbook_item"
+          }, {
+            "type": "lookbook_item"
+          }, {
+            "type": "lookbook_item"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

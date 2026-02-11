@@ -1,0 +1,493 @@
+{% style %}
+:root{
+    --bg: #F5F5F5;
+    --btn_primary-bg: #FFF544;
+    --btn_primary-color: #000000;
+    --btn_primary-hover-bg: #000000;
+}
+
+/* ===== Header Bar ===== */
+.hero-header-{{ section.id }}{
+    background: var(--bg);
+    position:relative;
+}
+
+.hero-header-{{ section.id }} .section-block{
+    display:flex;
+    align-items:center;
+}
+
+.hero-header-{{ section.id }} .section-block .section-block-icon{
+    width:max-content;
+    display:none;
+}
+
+.hero-header-{{ section.id }} .section-block .section-block-icon .btn__menu{
+    display:flex;
+    flex-direction:column;
+    gap: 3px;
+    border:0px;
+    padding:0px;
+    margin:0px;
+    cursor:pointer;
+    position:relative;
+    height:15px;
+    width: 18px;
+    background:transparent;
+}
+
+.hero-header-{{ section.id }} .section-block .section-block-icon span{
+    display:block;
+    width: 30px;
+    height:3px;
+    position:absolute;
+    background-color: #000000;
+    border-radius: 10px;
+    transition: all .2s linear;
+}
+
+.hero-header-{{ section.id }} .section-block .section-block-icon span:nth-child(2){
+    top:50%;
+}
+
+.hero-header-{{ section.id }} .section-block .section-block-icon span:nth-child(3){
+    top:100%;
+}
+
+.hero-header-{{ section.id }} .section-block .section-block-icon .btn__menu__open span:nth-child(3){
+    opacity: 0;
+    visibility: hidden;
+}
+
+.hero-header-{{ section.id }} .section-block .section-block-icon .btn__menu__open span:nth-child(1){
+    top:50%;
+    transform: rotate(45deg);
+}
+
+.hero-header-{{ section.id }} .section-block .section-block-icon .btn__menu__open span:nth-child(2){
+    transform: rotate(-45deg);
+}
+
+.hero-header-{{ section.id }} .section-block .section-block-content{
+    display:flex;
+    width:100%;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.hero-header-{{ section.id }} .section-block h1{
+    font-weight:600;
+    text-transform:uppercase;
+    margin-top:10px;
+    margin-bottom:10px;
+    font-family:'jost', sans-serif;
+    font-size:20px;
+    letter-spacing:2px;
+}
+
+.hero-header-{{ section.id }} .section-block p{
+    font-weight:400;
+    font-family:'jost', sans-serif;
+    font-size:16px;
+    line-height:1.4;
+    margin:0;
+}
+
+/* Mobile Menu */
+.hero-header-{{ section.id }}-mobile{
+    position: absolute;
+    top:100%;
+    left:0;
+    width: 100%;
+    background:#ffffff;
+    z-index:10;
+    height:0px;
+    visibility:hidden;
+    opacity:0;
+    transition: height .4s linear;
+    overflow:hidden;
+}
+
+.hero-header-{{ section.id }}-mobile .section-block_content{
+    display:flex;
+    align-items:center;
+    flex-direction:column;
+    justify-content:space-between;
+    padding:20px;
+    gap:15px;
+}
+
+.hero-header-{{ section.id }}-mobile.open{
+    height:160px;
+    visibility:visible;
+    opacity:1;
+    transition: height .4s linear;
+}
+
+@media(max-width:768px){
+    .hero-header-{{ section.id }} .section-block .section-block-content .section-left{
+        width: 100%;
+        text-align:center;
+    }
+    .hero-header-{{ section.id }} .section-block .section-block-content .section-center,
+    .hero-header-{{ section.id }} .section-block .section-block-content .section-right{
+        display:none;
+    }
+    .hero-header-{{ section.id }} .section-block .section-block-icon{
+        display:block;
+    }
+}
+
+/* ===== Button Primary ===== */
+.hero-{{ section.id }} .btn__primary{
+    position:relative;
+    width:207px;
+    height:55px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-weight:400;
+    font-family:'jost', sans-serif;
+    gap: 10px;
+    line-height:20.48px;
+    text-transform:uppercase;
+    text-decoration: none;
+    font-size:16px;
+    background-color: var(--btn_primary-bg);
+    color: var(--btn_primary-color);
+    overflow:hidden;
+}
+
+.hero-{{ section.id }} .btn__primary .btn__primary-text{
+    color: var(--btn_primary-color);
+    z-index:1;
+    position:relative;
+}
+
+.hero-{{ section.id }} .btn__primary .btn__primary-icon{
+    line-height:1;
+    z-index:1;
+    position:relative;
+}
+
+.hero-{{ section.id }} .btn__primary .btn__primary-icon svg{
+    width:30px;
+    height:30px;
+}
+
+.hero-{{ section.id }} .btn__primary:hover .btn__primary-text,
+.hero-{{ section.id }} .btn__primary:hover .btn__primary-icon svg,
+.hero-{{ section.id }} .btn__primary:hover .btn__primary-icon svg path{
+    --btn_primary-color: #ffffff;
+    color: inherit;
+    fill: currentColor;
+    z-index:1;
+    position:relative;
+}
+
+.hero-{{ section.id }} .btn__primary:before{
+    content:"";
+    position:absolute;
+    width:0;
+    height:55px;
+    background-color: var(--btn_primary-hover-bg);
+    top:0;
+    left:0;
+    display: block!important;
+    transition: width .2s linear;
+}
+
+.hero-{{ section.id }} .btn__primary:hover:before{
+    width:207px;
+}
+
+/* ===== Hero Banner ===== */
+.hero-banner-{{ section.id }}{
+    position:relative;
+    width: 100%;
+    overflow:hidden;
+}
+
+.hero-banner-{{ section.id }} .hero-bg{
+    position:relative;
+    width:100%;
+}
+
+.hero-banner-{{ section.id }} .hero-bg .image-placeholder img{
+    width:100%;
+    height: auto;
+    display:block;
+}
+
+.hero-banner-{{ section.id }} .hero-text-block-wrapper{
+    display:flex;
+    align-items:stretch;
+    justify-content:space-between;
+    overflow:hidden;
+    width:100%;
+}
+
+.hero-banner-{{ section.id }} .hero-text-block-wrapper .bg-placeholder{
+    position:relative;
+    width:100%;
+    background-image:url("{{ 'image-placeholder.svg' | asset_url }}");
+    background-size:cover;
+    display:block;
+}
+
+.hero-banner-{{ section.id }} .hero-text-block{
+    background-color:#ffffff;
+    padding:30px 40px;
+    max-width:600px;
+    flex-shrink:0;
+}
+
+.hero-banner-{{ section.id }} .hero-text-block h2{
+    font-weight:600;
+    font-family:'jost', sans-serif;
+    font-size:60px;
+    margin:0 0 10px 0;
+    line-height:1.1;
+}
+
+.hero-banner-{{ section.id }} .hero-text-block p{
+    font-family:'jost', sans-serif;
+    font-size:16px;
+    line-height:1.5;
+    margin:0 0 20px 0;
+    max-width:400px;
+}
+
+.hero-banner-{{ section.id }} .hero-text-block .btn__primary{
+    --btn_primary-color: #ffffff;
+    background-color: var(--btn_primary-hover-bg);
+    color: var(--btn_primary-color);
+}
+
+.hero-banner-{{ section.id }} .hero-text-block .btn__primary:hover{
+    --btn_primary-color: #000000;
+    color: var(--btn_primary-color);
+}
+
+.hero-banner-{{ section.id }} .hero-text-block .btn__primary:hover:before{
+    --btn_primary-bg: #FFF544;
+    background-color: var(--btn_primary-bg);
+}
+
+/* ===== Bottom Bar ===== */
+.hero-bottom-bar-{{ section.id }}{
+    background-color:var(--bg);
+    padding:15px;
+    text-align:center;
+}
+
+.hero-bottom-bar-{{ section.id }} p{
+    margin:0px;
+    font-family:'jost', sans-serif;
+    font-size:16px;
+    font-weight:500;
+    text-transform:uppercase;
+    letter-spacing:1px;
+}
+
+/* ===== Responsive ===== */
+@media(max-width:768px){
+    .hero-banner-{{ section.id }} .hero-text-block h2{
+        font-size:36px;
+    }
+    .hero-banner-{{ section.id }} .hero-text-block{
+        padding:20px;
+        max-width:100%;
+    }
+    .hero-banner-{{ section.id }} .hero-text-block-wrapper{
+        flex-direction:column;
+    }
+    .hero-banner-{{ section.id }} .hero-text-block-wrapper .bg-placeholder{
+        display:none;
+    }
+}
+
+{% endstyle %}
+
+<div class="hero-{{ section.id }}">
+    <!-- Header Bar -->
+    <div class="hero-header-{{ section.id }}">
+        <div class="page-width">
+            <div class="section-block">
+                <div class="section-block-icon">
+                    <button aria-label="Menu" class="btn__menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+                <div class="section-block-content">
+                    <div class="section-left">
+                        <h1>{{ section.settings.heading | escape }}</h1>
+                    </div>
+                    <div class="section-center">
+                        <p>{{ section.settings.header_txt | escape }}</p>
+                    </div>
+                    <div class="section-right">
+                        <a href="{{ section.settings.btn_link }}" class="btn__primary">
+                            <span class="btn__primary-text">
+                                {{ section.settings.btn_text | escape }}
+                            </span>
+                            <span class="btn__primary-icon">
+                                {{- 'icon_btn.svg' | inline_asset_content -}}
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-header-{{ section.id }}-mobile" aria-hidden="true" aria-label="Mobile Menu">
+            <div class="page-width">
+                <div class="section-block_content">
+                    <p>{{ section.settings.header_txt | escape }}</p>
+                    <a href="{{ section.settings.btn_link }}" class="btn__primary">
+                        <span class="btn__primary-text">
+                            {{ section.settings.btn_text | escape }}
+                        </span>
+                        <span class="btn__primary-icon">
+                            {{- 'icon_btn.svg' | inline_asset_content -}}
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Banner -->
+    <div class="hero-banner-{{ section.id }}">
+        <div class="hero-bg">
+            {% if section.settings.bg != blank %}
+                {{ section.settings.bg | image_url: width:section.settings.bg.width | image_tag }}
+            {% else %}
+                <div class="image-placeholder">
+                    <img src="{{- 'image-placeholder.svg' | asset_url -}}" alt="Image Placeholder">
+                </div>
+            {% endif %}
+
+            <div class="hero-text-block-wrapper">
+                <div class="hero-text-block">
+                    <h2>{{ section.settings.block_heading | escape }}</h2>
+                    <p>{{ section.settings.block_text | escape }}</p>
+                    <a href="{{ section.settings.block_button_link }}" class="btn__primary">
+                        <div class="btn__primary-text">{{ section.settings.block_button_text | escape }}</div>
+                        <div class="btn__primary-icon">{{- 'icon_btn.svg' | inline_asset_content -}}</div>
+                    </a>
+                </div>
+                <div class="bg-placeholder"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="hero-bottom-bar-{{ section.id }}">
+        <div class="page-width">
+            <p>{{ section.settings.bottom_bar_text | escape }}</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function(){
+        const menuBtn = document.querySelector('.hero-header-{{ section.id }} .btn__menu');
+        const mobileMenu = document.querySelector('.hero-header-{{ section.id }}-mobile');
+        if(menuBtn && mobileMenu){
+            menuBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                menuBtn.classList.toggle('btn__menu__open');
+                mobileMenu.classList.toggle('open');
+            });
+        }
+    })();
+</script>
+
+{% schema %}
+{
+    "name":"Hero",
+    "settings":[
+        {
+            "type": "header",
+            "content": "Header"
+        },
+        {
+            "type": "text",
+            "id": "heading",
+            "label": "Heading",
+            "default": "Tisso Vison"
+        },
+        {
+            "type": "text",
+            "id": "header_txt",
+            "label": "Header Text",
+            "default": "Find the ideal gift for your loved ones."
+        },
+        {
+            "type": "text",
+            "id": "btn_text",
+            "label": "Button Text",
+            "default": "Choose Gift"
+        },
+        {
+            "type": "url",
+            "id": "btn_link",
+            "label": "Button Link"
+        },
+        {
+            "type": "header",
+            "content": "Banner Background"
+        },
+        {
+            "type": "image_picker",
+            "id":"bg",
+            "label": "Background Image"
+        },
+        {
+            "type": "header",
+            "content": "Text Block"
+        },
+        {
+            "type": "inline_richtext",
+            "id":"block_heading",
+            "label": "Heading",
+            "default": "The Gift Guide"
+        },
+        {
+            "type": "textarea",
+            "id":"block_text",
+            "label": "Paragraph",
+            "default": "Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season."
+        },
+        {
+            "type": "text",
+            "id": "block_button_text",
+            "label": "Button Text",
+            "default": "Shop Now"
+        },
+        {
+            "type": "url",
+            "id": "block_button_link",
+            "label": "Button Link"
+        },
+        {
+            "type": "header",
+            "content": "Bottom Bar"
+        },
+        {
+            "type": "text",
+            "id":"bottom_bar_text",
+            "label": "Bottom Bar Text",
+            "default": "SUSTAINABLE, ETHICALLY MADE CLOTHES IN SIZES XXS TO 6XL"
+        }
+    ],
+    "presets":[
+        {
+            "name":"Hero",
+            "category":"page"
+        }
+    ]
+}
+{% endschema %}

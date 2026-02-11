@@ -10,26 +10,30 @@
 {
   "sections": {
     "main": {
-      "type": "main-page",
-      "settings": {
-        "padding_top": 28,
-        "padding_bottom": 28
-      }
-    },
-    "section_banner_cKVegB": {
       "type": "section-banner",
-      "name": "Banner",
       "settings": {}
     },
-    "section_custom_grid_rDGnnM": {
+    "cutom-grid": {
       "type": "section-custom-grid",
-      "name": "Custom Grid",
       "settings": {}
+    },
+    "lookbook": {
+      "type": "section-lookbook",
+      "settings": {},
+      "blocks": {
+        "item_1": { "type": "lookbook_item", "settings": {} },
+        "item_2": { "type": "lookbook_item", "settings": {} },
+        "item_3": { "type": "lookbook_item", "settings": {} },
+        "item_4": { "type": "lookbook_item", "settings": {} },
+        "item_5": { "type": "lookbook_item", "settings": {} },
+        "item_6": { "type": "lookbook_item", "settings": {} }
+      },
+      "block_order": ["item_1", "item_2", "item_3", "item_4", "item_5", "item_6"]
     }
   },
   "order": [
     "main",
-    "section_banner_cKVegB",
-    "section_custom_grid_rDGnnM"
+    "cutom-grid",
+    "lookbook"
   ]
 }
